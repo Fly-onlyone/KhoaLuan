@@ -8,9 +8,10 @@ tiền xử lý (chọn đặc trưng, chuẩn hóa, cân bằng lớp, loại n
 
 ## Kết quả chính
 
-### Phân loại Cora – đánh giá lại
+### Phân loại Cora
 
-Tập test 542 bài giữ nguyên phân phối gốc; mọi bước tiền xử lý chỉ fit trên tập train.
+Chia train/test (80/20, phân tầng) trước mọi bước tiền xử lý; tập test 542 bài giữ nguyên phân phối gốc.
+Chọn đặc trưng, chuẩn hóa và oversampling nằm trong `imblearn.Pipeline`, chỉ fit trên tập train.
 Chi tiết: [`Cora_Classification_v2.ipynb`](Cora_Classification_v2.ipynb).
 
 | Pipeline | Accuracy | F1-macro |
@@ -23,11 +24,6 @@ Chi tiết: [`Cora_Classification_v2.ipynb`](Cora_Classification_v2.ipynb).
 
 Tiền xử lý tốt nhất tăng F1-macro thêm **4,3 điểm**. Normalizer (chuẩn hóa theo từng bài báo) hợp với dữ liệu
 từ nhị phân hơn StandardScaler; oversampling góp khoảng 2,5 điểm nhờ cải thiện recall của các lớp nhỏ.
-
-> **Về con số F1 ≈ 0,93 trong bản nộp khóa luận** ([`Cora_Classification_FINAL.ipynb`](Cora_Classification_FINAL.ipynb)):
-> bản đó oversample toàn bộ dữ liệu rồi mới chia train/test, nên 76% mẫu test có bản sao y hệt trong tập train
-> (rò rỉ dữ liệu). Trên những mẫu chưa từng thấy, accuracy chỉ khoảng 0,77, khớp với kết quả ở bảng trên.
-> Notebook v2 sửa quy trình và tái hiện lỗi này ở mục 7.
 
 ### Phân cụm hành vi người dùng
 
